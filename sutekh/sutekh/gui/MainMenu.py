@@ -8,7 +8,7 @@
 
 from gi.repository import Gtk
 
-from sutekh.io.IdentifyXMLFile import IdentifyXMLFile
+from sutekh.localio.IdentifyXMLFile import IdentifyXMLFile
 from sutekh.base.gui.AppMenu import AppMenu
 
 from sutekh.base.Utility import is_memory_db

@@ -24,7 +24,7 @@ from sutekh.base.core.DBSignals import (listen_row_destroy, listen_row_update,
                                         disconnect_row_destroy,
                                         disconnect_row_update,
                                         disconnect_row_created)
-from sutekh.base.io.UrlOps import urlopen_with_timeout
+from sutekh.base.localio.UrlOps import urlopen_with_timeout
 from sutekh.base.gui.MessageBus import MessageBus, CARD_TEXT_MSG
 from sutekh.base.gui.SutekhDialog import (SutekhDialog,
                                           do_complaint_error)
@@ -33,8 +33,8 @@ from sutekh.base.gui.FileOrUrlWidget import FileOrUrlWidget
 from sutekh.base.gui.GuiDataPack import gui_error_handler, progress_fetch_data
 from sutekh.base.gui.SutekhFileWidget import add_filter
 
-from sutekh.io.ZipFileWrapper import ZipFileWrapper
-from sutekh.io.DataPack import DOC_URL, find_data_pack, find_all_data_packs
+from sutekh.localio.ZipFileWrapper import ZipFileWrapper
+from sutekh.localio.DataPack import DOC_URL, find_data_pack, find_all_data_packs
 from sutekh.gui.PluginManager import SutekhPlugin
 
 

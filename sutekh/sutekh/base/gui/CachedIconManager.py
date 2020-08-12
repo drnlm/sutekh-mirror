@@ -9,7 +9,7 @@ import os
 
 from gi.repository import GdkPixbuf, GLib, Gtk
 
-from ..io.BaseIconManager import BaseIconManager
+from ..localio.BaseIconManager import BaseIconManager
 from .ProgressDialog import ProgressDialog, SutekhCountLogHandler
 
 

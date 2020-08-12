@@ -5,7 +5,7 @@
 """Plugin to import selected card sets from a zip file"""
 
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.io.ZipFileWrapper import ZipFileWrapper
+from sutekh.localio.ZipFileWrapper import ZipFileWrapper
 from sutekh.base.gui.plugins.BaseZipImport import BaseZipImport
 
 

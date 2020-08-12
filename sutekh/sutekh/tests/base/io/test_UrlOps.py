@@ -10,7 +10,7 @@ from urllib.error import URLError
 import socket
 from sutekh.tests.TestCore import SutekhTest
 from sutekh.base.tests.TestUtils import FailFile
-from sutekh.base.io.UrlOps import fetch_data
+from sutekh.base.localio.UrlOps import fetch_data
 
 
 class UrlOpsTest(SutekhTest):

@@ -6,7 +6,7 @@
 
 from sutekh.gui.PluginManager import SutekhPlugin
 from sutekh.base.gui.plugins.BaseBackup import BaseBackup
-from sutekh.io.ZipFileWrapper import ZipFileWrapper
+from sutekh.localio.ZipFileWrapper import ZipFileWrapper
 
 
 class FullBackup(SutekhPlugin, BaseBackup):

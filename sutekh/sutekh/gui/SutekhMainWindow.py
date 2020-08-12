@@ -24,9 +24,9 @@ from sutekh.base.gui.UpdateDialog import UpdateDialog
 
 from sutekh.core.SutekhObjectCache import SutekhObjectCache
 
-from sutekh.io.PhysicalCardSetWriter import PhysicalCardSetWriter
-from sutekh.io.WwUrls import WW_CARDLIST_DATAPACK
-from sutekh.io.DataPack import find_all_data_packs
+from sutekh.localio.PhysicalCardSetWriter import PhysicalCardSetWriter
+from sutekh.localio.WwUrls import WW_CARDLIST_DATAPACK
+from sutekh.localio.DataPack import find_all_data_packs
 
 from sutekh.gui.AboutDialog import SutekhAboutDialog
 from sutekh.gui.MainMenu import MainMenu

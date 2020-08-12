@@ -15,7 +15,7 @@ from logging import Logger
 from gi.repository import Gtk
 
 from sutekh.base.Utility import prefs_dir, ensure_dir_exists
-from sutekh.base.io.UrlOps import urlopen_with_timeout
+from sutekh.base.localio.UrlOps import urlopen_with_timeout
 from sutekh.base.gui.FileOrUrlWidget import FileOrUrlWidget
 from sutekh.base.gui.GuiDataPack import gui_error_handler, progress_fetch_data
 from sutekh.base.gui.SutekhDialog import SutekhDialog, do_exception_complaint
@@ -23,7 +23,7 @@ from sutekh.base.gui.SutekhFileWidget import add_filter
 from sutekh.base.gui.ProgressDialog import (ProgressDialog,
                                             SutekhCountLogHandler)
 
-from sutekh.io.DataPack import DOC_URL, find_data_pack, find_all_data_packs
+from sutekh.localio.DataPack import DOC_URL, find_data_pack, find_all_data_packs
 from sutekh.gui.PluginManager import SutekhPlugin
 
 

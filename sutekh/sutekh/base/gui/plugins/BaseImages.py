@@ -18,7 +18,7 @@ from gi.repository import Gdk, GdkPixbuf, GObject, Gtk
 from ...core.BaseTables import PhysicalCard
 from ...core.BaseAdapters import IPrintingName
 
-from ...io.UrlOps import urlopen_with_timeout
+from ...localio.UrlOps import urlopen_with_timeout
 
 from ...Utility import prefs_dir, ensure_dir_exists, get_printing_date
 

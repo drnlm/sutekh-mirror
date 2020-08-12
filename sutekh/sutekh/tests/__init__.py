@@ -11,7 +11,7 @@ from sqlobject import sqlhub, connectionForURI
 
 from sutekh.base.core.BaseTables import VersionTable
 from sutekh.base.core.DBUtility import refresh_tables
-from sutekh.base.io.EncodedFile import EncodedFile
+from sutekh.base.localio.EncodedFile import EncodedFile
 from sutekh.base.tests.TestUtils import make_null_handler, create_pkg_tmp_file
 
 from sutekh.SutekhUtility import (read_white_wolf_list, read_rulings,

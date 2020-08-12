@@ -3,11 +3,11 @@
 # Copyright 2013 Neil Muller <drnlmuller+sutekh@gmail.com>
 # GPL - see COPYING for details
 
-"""Wrap various functions from base.io.UrlOps with timeout handling"""
+"""Wrap various functions from base.localio.UrlOps with timeout handling"""
 
 from urllib.error import URLError
 import socket
-from ..io.UrlOps import fetch_data
+from ..localio.UrlOps import fetch_data
 from .SutekhDialog import do_exception_complaint
 from .ProgressDialog import ProgressDialog, SutekhCountLogHandler
 

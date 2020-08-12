@@ -37,14 +37,14 @@ from sutekh.core.DatabaseUpgrade import DBUpgradeManager
 from sutekh.base.core.CardSetHolder import CardSetWrapper
 from sutekh.base.CliUtils import (run_filter, print_card_filter_list,
                                   print_card_list, do_print_card)
-from sutekh.io.XmlFileHandling import (PhysicalCardXmlFile,
+from sutekh.localio.XmlFileHandling import (PhysicalCardXmlFile,
                                        PhysicalCardSetXmlFile,
                                        AbstractCardSetXmlFile,
                                        write_all_pcs)
-from sutekh.io.WriteArdbText import WriteArdbText
-from sutekh.io.ZipFileWrapper import ZipFileWrapper
-from sutekh.base.io.EncodedFile import EncodedFile
-from sutekh.io.WwUrls import (WW_CARDLIST_URL, WW_RULINGS_URL,
+from sutekh.localio.WriteArdbText import WriteArdbText
+from sutekh.localio.ZipFileWrapper import ZipFileWrapper
+from sutekh.base.localio.EncodedFile import EncodedFile
+from sutekh.localio.WwUrls import (WW_CARDLIST_URL, WW_RULINGS_URL,
                               EXTRA_CARD_URL, EXP_DATA_URL,
                               LOOKUP_DATA_URL)
 from sutekh.SutekhInfo import SutekhInfo

@@ -3,4 +3,4 @@
 # Copyright 2014 Neil Muller <drnlmuller+sutekh@gmail.com>
 # GPL - see COPYING for details
 
-"""This is the tests.base.io package"""
+"""This is the tests.base.localio package"""

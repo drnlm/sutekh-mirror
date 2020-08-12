@@ -8,7 +8,7 @@
 from gi.repository import Gtk
 
 from sutekh.base.core.BaseTables import PhysicalCardSet
-from sutekh.io.WriteArdbHTML import WriteArdbHTML
+from sutekh.localio.WriteArdbHTML import WriteArdbHTML
 from sutekh.gui.PluginManager import SutekhPlugin
 from sutekh.base.gui.SutekhDialog import do_complaint_error
 from sutekh.base.gui.SutekhFileWidget import ExportDialog

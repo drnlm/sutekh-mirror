@@ -31,7 +31,7 @@ from sutekh.base.core.BaseTables import (PhysicalCard, AbstractCard,
 from sutekh.core.SutekhTables import (SutekhAbstractCard, Clan, Virtue,
                                       Discipline, Creed, DisciplinePair,
                                       Sect, Title, TABLE_LIST)
-from sutekh.io.WhiteWolfTextParser import strip_braces
+from sutekh.localio.WhiteWolfTextParser import strip_braces
 from sutekh.base.core.BaseDatabaseUpgrade import BaseDBUpgradeManager
 from sutekh.base.core.DatabaseVersion import DatabaseVersion
 

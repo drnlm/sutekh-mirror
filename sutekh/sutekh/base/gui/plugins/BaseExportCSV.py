@@ -7,7 +7,7 @@
 
 from gi.repository import Gtk
 from ...core.BaseTables import PhysicalCardSet
-from ...io.WriteCSV import WriteCSV
+from ...localio.WriteCSV import WriteCSV
 from ...Utility import safe_filename
 from ..BasePluginManager import BasePlugin
 from ..SutekhFileWidget import ExportDialog

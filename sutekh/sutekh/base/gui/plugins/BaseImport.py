@@ -7,8 +7,8 @@
 """Convert a ELDB or ARDB text or html file into an Card Set."""
 
 from gi.repository import Gtk
-from ...io.UrlOps import urlopen_with_timeout
-from ...io.EncodedFile import EncodedFile
+from ...localio.UrlOps import urlopen_with_timeout
+from ...localio.EncodedFile import EncodedFile
 from ...core.BaseTables import PhysicalCardSet
 from ..BasePluginManager import BasePlugin
 from ..SutekhDialog import SutekhDialog

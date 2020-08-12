@@ -13,7 +13,7 @@ from sutekh.base.Utility import prefs_dir, ensure_dir_exists
 from sutekh.base.gui.SutekhDialog import do_complaint
 from sutekh.base.gui.CachedIconManager import CachedIconManager
 
-from sutekh.io.IconManager import IconManager
+from sutekh.localio.IconManager import IconManager
 from sutekh.SutekhInfo import SutekhInfo
 
 

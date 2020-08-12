@@ -20,7 +20,7 @@ from sutekh.base.core.BaseAdapters import IAbstractCard, IPhysicalCardSet
 from sutekh.base.core.BaseFilters import (FilterOrBox, FilterAndBox,
                                           SpecificCardFilter,
                                           MultiPhysicalCardSetMapFilter)
-from sutekh.base.io.UrlOps import urlopen_with_timeout, fetch_data, HashError
+from sutekh.base.localio.UrlOps import urlopen_with_timeout, fetch_data, HashError
 from sutekh.base.gui.SutekhDialog import (SutekhDialog, NotebookDialog,
                                           do_complaint_error)
 from sutekh.base.gui.ProgressDialog import (ProgressDialog,
@@ -31,8 +31,8 @@ from sutekh.base.gui.SutekhFileWidget import add_filter
 from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
 from sutekh.base.gui.GuiDataPack import gui_error_handler
 
-from sutekh.io.DataPack import find_all_data_packs, DOC_URL
-from sutekh.io.ZipFileWrapper import ZipFileWrapper
+from sutekh.localio.DataPack import find_all_data_packs, DOC_URL
+from sutekh.localio.ZipFileWrapper import ZipFileWrapper
 from sutekh.gui.PluginManager import SutekhPlugin
 
 

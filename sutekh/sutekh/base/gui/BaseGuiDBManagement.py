@@ -22,9 +22,9 @@ from ..core.DBUtility import (flush_cache, get_cs_id_name_table,
                               refresh_tables, set_metadata_date,
                               CARDLIST_UPDATE_DATE)
 
-from ..io.EncodedFile import EncodedFile
-from ..io.UrlOps import urlopen_with_timeout, HashError
-from ..io.BaseZipFileWrapper import ZipEntryProxy
+from ..localio.EncodedFile import EncodedFile
+from ..localio.UrlOps import urlopen_with_timeout, HashError
+from ..localio.BaseZipFileWrapper import ZipEntryProxy
 
 from .DBUpgradeDialog import DBUpgradeDialog
 from .ProgressDialog import (ProgressDialog,

@@ -10,7 +10,7 @@ import csv
 from gi.repository import GObject, Gtk
 
 from ...core.BaseTables import PhysicalCardSet
-from ...io.CSVParser import CSVParser
+from ...localio.CSVParser import CSVParser
 from ..BasePluginManager import BasePlugin
 from ..SutekhDialog import SutekhDialog, do_complaint_error
 from ..SutekhFileWidget import SutekhFileButton

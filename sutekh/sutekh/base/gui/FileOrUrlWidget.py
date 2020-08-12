@@ -9,8 +9,8 @@ import os.path
 
 from gi.repository import Gtk
 
-from ..io.EncodedFile import EncodedFile
-from ..io.UrlOps import urlopen_with_timeout
+from ..localio.EncodedFile import EncodedFile
+from ..localio.UrlOps import urlopen_with_timeout
 from .SutekhFileWidget import SutekhFileButton
 from .GuiDataPack import gui_error_handler, progress_fetch_data
 

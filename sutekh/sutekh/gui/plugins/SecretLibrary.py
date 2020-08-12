@@ -25,10 +25,10 @@ from sutekh.base.gui.GuiDataPack import gui_error_handler
 
 from sutekh.SutekhInfo import SutekhInfo
 from sutekh.core.Filters import CryptCardFilter
-from sutekh.io.SLDeckParser import SLDeckParser
-from sutekh.io.WriteSLDeck import SL_FIXES
-from sutekh.io.DataPack import urlopen_with_timeout
-from sutekh.io.SLInventoryParser import SLInventoryParser
+from sutekh.localio.SLDeckParser import SLDeckParser
+from sutekh.localio.WriteSLDeck import SL_FIXES
+from sutekh.localio.DataPack import urlopen_with_timeout
+from sutekh.localio.SLInventoryParser import SLInventoryParser
 from sutekh.gui.PluginManager import SutekhPlugin
 
 

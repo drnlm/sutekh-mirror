@@ -7,15 +7,15 @@
 
 from sutekh.gui.PluginManager import SutekhPlugin
 from sutekh.base.gui.plugins.BaseExport import BaseCardSetExport
-from sutekh.io.WriteJOL import WriteJOL
-from sutekh.io.WriteLackeyCCG import WriteLackeyCCG
-from sutekh.io.WriteArdbXML import WriteArdbXML
-from sutekh.io.WriteArdbInvXML import WriteArdbInvXML
-from sutekh.io.WriteELDBInventory import WriteELDBInventory
-from sutekh.io.WriteELDBDeckFile import WriteELDBDeckFile
-from sutekh.io.WriteArdbText import WriteArdbText
-from sutekh.io.WriteTWDAText import WriteTWDAText
-from sutekh.io.WriteVEKNForum import WriteVEKNForum
+from sutekh.localio.WriteJOL import WriteJOL
+from sutekh.localio.WriteLackeyCCG import WriteLackeyCCG
+from sutekh.localio.WriteArdbXML import WriteArdbXML
+from sutekh.localio.WriteArdbInvXML import WriteArdbInvXML
+from sutekh.localio.WriteELDBInventory import WriteELDBInventory
+from sutekh.localio.WriteELDBDeckFile import WriteELDBDeckFile
+from sutekh.localio.WriteArdbText import WriteArdbText
+from sutekh.localio.WriteTWDAText import WriteTWDAText
+from sutekh.localio.WriteVEKNForum import WriteVEKNForum
 
 
 class CardSetExport(SutekhPlugin, BaseCardSetExport):

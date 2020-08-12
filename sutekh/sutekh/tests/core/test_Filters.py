@@ -9,7 +9,7 @@ import unittest
 from sqlobject import SQLObjectNotFound
 from sutekh.tests.TestCore import SutekhTest
 from sutekh.base.tests.TestUtils import make_card
-from sutekh.tests.io import test_WhiteWolfParser
+from sutekh.tests.localio import test_WhiteWolfParser
 from sutekh.base.core.BaseTables import (AbstractCard, PhysicalCard,
                                          Printing, PhysicalCardSet,
                                          MapPhysicalCardToPhysicalCardSet)

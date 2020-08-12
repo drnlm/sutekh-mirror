@@ -14,22 +14,22 @@ import string
 from sqlobject import SQLObjectNotFound
 
 from sutekh.base.Utility import move_articles_to_back, gen_app_temp_dir
-from sutekh.base.io.IOBase import safe_parser
-from sutekh.base.io.LookupCSVParser import LookupCSVParser
+from sutekh.base.localio.IOBase import safe_parser
+from sutekh.base.localio.LookupCSVParser import LookupCSVParser
 
 from sutekh.core.SutekhTables import CRYPT_TYPES
 from sutekh.base.core.BaseAdapters import IAbstractCard
 
-from sutekh.io.WhiteWolfTextParser import WhiteWolfTextParser
-from sutekh.io.RulingParser import RulingParser
-from sutekh.io.ExpInfoParser import ExpInfoParser
+from sutekh.localio.WhiteWolfTextParser import WhiteWolfTextParser
+from sutekh.localio.RulingParser import RulingParser
+from sutekh.localio.ExpInfoParser import ExpInfoParser
 
 
 def read_white_wolf_list(oFile, oLogHandler=None):
     """Parse in a new White Wolf cardlist
 
        oFile is an object with a .open() method (e.g.
-       sutekh.base.io.EncodedFile.EncodedFile)
+       sutekh.base.localio.EncodedFile.EncodedFile)
        """
     oParser = WhiteWolfTextParser(oLogHandler)
     safe_parser(oFile, oParser)
@@ -39,7 +39,7 @@ def read_rulings(oFile, oLogHandler=None):
     """Parse a new White Wolf rulings file
 
        oFile is an object with a .open() method (e.g. a
-       sutekh.base.io.EncodedFile.EncodedFile)
+       sutekh.base.localio.EncodedFile.EncodedFile)
        """
     oParser = RulingParser(oLogHandler)
     safe_parser(oFile, oParser)
@@ -49,7 +49,7 @@ def read_exp_info_file(oFile, oLogHandler=None):
     """Read the expansion and printing information from the given file.
 
        oFile is an object with a .open() method (e.g. a
-       sutekh.base.io.EncodedFile.EncodedFile)
+       sutekh.base.localio.EncodedFile.EncodedFile)
        """
     oParser = ExpInfoParser(oLogHandler)
     safe_parser(oFile, oParser)
@@ -59,7 +59,7 @@ def read_lookup_data(oFile, oLogHandler=None):
     """Read the lookup data information from the given file.
 
        oFile is an object with a .open() method (e.g. a
-       sutekh.base.io.EncodedFile.EncodedFile)
+       sutekh.base.localio.EncodedFile.EncodedFile)
        """
     oParser = LookupCSVParser(oLogHandler)
     safe_parser(oFile, oParser)

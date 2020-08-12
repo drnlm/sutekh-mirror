@@ -17,7 +17,7 @@ from sutekh.base.core.FilterParser import escape, unescape
 
 from sutekh.core import Filters
 from sutekh.tests.TestCore import SutekhTest
-from sutekh.tests.io import test_WhiteWolfParser
+from sutekh.tests.localio import test_WhiteWolfParser
 from sutekh.tests.core.test_Filters import make_physical_card_sets
 
 

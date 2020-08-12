@@ -9,11 +9,11 @@ from sutekh.base.gui.BaseGuiDBManagement import (BaseGuiDBManager,
 from sutekh.base.gui.GuiDataPack import gui_error_handler
 from sutekh.core.DatabaseUpgrade import DBUpgradeManager
 from sutekh.core.SutekhTables import TABLE_LIST
-from sutekh.io.ZipFileWrapper import ZipFileWrapper
-from sutekh.io.WwUrls import (WW_CARDLIST_URL, WW_RULINGS_URL, EXTRA_CARD_URL,
+from sutekh.localio.ZipFileWrapper import ZipFileWrapper
+from sutekh.localio.WwUrls import (WW_CARDLIST_URL, WW_RULINGS_URL, EXTRA_CARD_URL,
                               EXP_DATA_URL, LOOKUP_DATA_URL,
                               WW_CARDLIST_DATAPACK)
-from sutekh.io.DataPack import find_data_pack
+from sutekh.localio.DataPack import find_data_pack
 from sutekh.SutekhUtility import (read_rulings, read_white_wolf_list,
                                   read_exp_info_file, read_lookup_data,
                                   do_card_checks)

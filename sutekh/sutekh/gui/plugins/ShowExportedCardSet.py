@@ -8,13 +8,13 @@
 
 from sutekh.gui.PluginManager import SutekhPlugin
 from sutekh.base.gui.plugins.BaseShowExported import BaseShowExported
-from sutekh.io.WriteJOL import WriteJOL
-from sutekh.io.WriteLackeyCCG import WriteLackeyCCG
-from sutekh.io.WriteELDBDeckFile import WriteELDBDeckFile
-from sutekh.io.WriteArdbText import WriteArdbText
-from sutekh.io.WritePmwiki import WritePmwiki
-from sutekh.io.WriteVEKNForum import WriteVEKNForum
-from sutekh.io.WriteSLDeck import WriteSLDeck
+from sutekh.localio.WriteJOL import WriteJOL
+from sutekh.localio.WriteLackeyCCG import WriteLackeyCCG
+from sutekh.localio.WriteELDBDeckFile import WriteELDBDeckFile
+from sutekh.localio.WriteArdbText import WriteArdbText
+from sutekh.localio.WritePmwiki import WritePmwiki
+from sutekh.localio.WriteVEKNForum import WriteVEKNForum
+from sutekh.localio.WriteSLDeck import WriteSLDeck
 
 
 class ShowExported(SutekhPlugin, BaseShowExported):

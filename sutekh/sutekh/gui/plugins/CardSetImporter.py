@@ -6,15 +6,15 @@
 
 """Convert a ELDB or ARDB text or html file into an Card Set."""
 
-from sutekh.io.ELDBHTMLParser import ELDBHTMLParser
-from sutekh.io.ARDBTextParser import ARDBTextParser
-from sutekh.io.ARDBXMLDeckParser import ARDBXMLDeckParser
-from sutekh.io.ARDBXMLInvParser import ARDBXMLInvParser
-from sutekh.io.ELDBDeckFileParser import ELDBDeckFileParser
-from sutekh.io.ELDBInventoryParser import ELDBInventoryParser
-from sutekh.io.JOLDeckParser import JOLDeckParser
-from sutekh.io.LackeyDeckParser import LackeyDeckParser
-from sutekh.io.GuessFileParser import GuessFileParser
+from sutekh.localio.ELDBHTMLParser import ELDBHTMLParser
+from sutekh.localio.ARDBTextParser import ARDBTextParser
+from sutekh.localio.ARDBXMLDeckParser import ARDBXMLDeckParser
+from sutekh.localio.ARDBXMLInvParser import ARDBXMLInvParser
+from sutekh.localio.ELDBDeckFileParser import ELDBDeckFileParser
+from sutekh.localio.ELDBInventoryParser import ELDBInventoryParser
+from sutekh.localio.JOLDeckParser import JOLDeckParser
+from sutekh.localio.LackeyDeckParser import LackeyDeckParser
+from sutekh.localio.GuessFileParser import GuessFileParser
 from sutekh.gui.PluginManager import SutekhPlugin
 from sutekh.base.gui.plugins.BaseImport import BaseImport, GUESS_FILE_FORMAT
 

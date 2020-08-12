@@ -12,7 +12,7 @@ from gi.repository import Gdk, Gtk
 
 from ...core.BaseTables import PhysicalCardSet
 from ...core.CardSetHolder import CardSetWrapper
-from ...io.WriteCSV import WriteCSV
+from ...localio.WriteCSV import WriteCSV
 from ..BasePluginManager import BasePlugin
 from ..AutoScrolledWindow import AutoScrolledWindow
 from ..SutekhDialog import SutekhDialog
