@@ -8,68 +8,28 @@
 
 """Setuptools setup.py file for Sutekh."""
 
-from setuptools import setup, find_packages
+#from setuptools import setup, find_packages
 
 # avoid importing all of Sutkeh and its dependencies
-import imp
+import importlib
 import os
 import sys
-import types
-sys.modules['sutekh'] = types.ModuleType('sutekh')
-SutekhInfoMod = imp.load_source("sutekh.SutekhInfo",
-                                os.path.join(os.path.dirname(__file__),
-                                             "sutekh", "SutekhInfo.py"))
-SutekhInfo = SutekhInfoMod.SutekhInfo
 
+from setuptools import find_packages
+from cx_Freeze import setup, Executable
 
-try:
-    # pylint: disable=import-error, unused-import
-    # import-error - OK to fail to import these here
-    # unused-import - py2exe is unused, since the import is just a check
-    import py2exe
-    from py2exe.build_exe import py2exe as builder
-    import os
-    import glob
-    # pylint: enable=import-error, unused-import
+sys.path.append('sutekh')
+SutekhInfo = importlib.import_module("SutekhInfo").SutekhInfo
 
-    class PkgResourceBuilder(builder):
-        """Extend to builder class to override copy_extensions"""
-        # pylint: disable=no-member, invalid-name, no-init
-        # missed imports leave pylint confused here
-        # not using our naming conventions here
-        # we don't need an __init__ method for our goals
+guibase = None
+if sys.platform == "win32":
+    guibase = "Win32GUI"
 
-        def copy_extensions(self, extensions):
-            """Hack the py2exe C extension copier
-               to put pkg_resources into the
-               library.zip file.
-               """
-            builder.copy_extensions(self, extensions)
-            package_data = self.distribution.package_data.copy()
+build_exe_options = {
+    'includes': ['sqlobject.boundattributes', 'sqlobject.declarative'],
+    'packages': ['gi', 'cairo'],
+}
 
-            for package, patterns in self.distribution.package_data.items():
-                package_dir = os.path.join(*package.split('.'))
-                collect_dir = os.path.join(self.collect_dir, package_dir)
-
-                # create sub-dirs in py2exe collection area
-                # Copy the media files to the collection dir.
-                # Also add the copied file to the list of compiled
-                # files so it will be included in zipfile.
-                for pattern in patterns:
-                    pattern = os.path.join(*pattern.split('/'))
-                    for f in glob.glob(os.path.join(package_dir, pattern)):
-                        name = os.path.basename(f)
-                        folder = os.path.join(collect_dir, os.path.dirname(f))
-                        if not os.path.exists(folder):
-                            self.mkpath(folder)
-                        self.copy_file(f, os.path.join(collect_dir, name))
-                        self.compiled_files.append(os.path.join(package_dir,
-                            name))
-
-except ImportError:
-    # pylint: disable=invalid-name
-    # pylint thinks this is a const, which it isn't
-    PkgResourceBuilder = None
 
 setup   (   # Metadata
             name = SutekhInfo.NAME,
@@ -100,7 +60,6 @@ setup   (   # Metadata
             packages = find_packages(exclude=['sutekh.tests.*',
                 'sutekh.tests', 'sutekh.base.tests']),
             package_data = {
-                # NOTE: PkgResourceBuilder cannot handle the
                 #   catch-all empty package ''.
                 # Include SVG and INI files from sutekh.gui package
                 'sutekh.gui': ['*.svg', '*.ini'],
@@ -114,60 +73,13 @@ setup   (   # Metadata
             entry_points = {
                 'console_scripts' : ['sutekh-cli = sutekh.SutekhCli:main'],
                 'gui_scripts' : ['sutekh = sutekh.SutekhGui:main'],
-                },
-
-            # py2exe
-            console = ['sutekh/SutekhCli.py', 'sutekh/TestConsole.py'],
-            windows = [{
-                'script': 'sutekh/SutekhGui.py',
-                'icon_resources': [(0, "artwork/sutekh-icon-inkscape.ico")],
-            }],
-            cmdclass = {
-                'py2exe': PkgResourceBuilder,
             },
-            options = { 'py2exe': {
-                'dist_dir': 'build/sutekh-%s-py2exe' % SutekhInfo.VERSION_STR,
-                'packages': [
-                    'logging', 'encodings', 'sqlite3',
-                ],
-                'includes': [
-                    # gtk
-                    'cairo', 'pango', 'gobject', 'atk', 'pangocairo', 'gio',
-                    # configobj
-                    'configobj', 'validate',
-                    # plugin only dependencies
-                    'webbrowser', 'csv',
-                    # plugins
-                    'sutekh.gui.plugins.*',
-                    # pkg_resources extra stuff
-                    "pkg_resources._vendor.appdirs",
-                    "pkg_resources._vendor.pyparsing",
-                    "pkg_resources._vendor.packaging",
-                    "pkg_resources._vendor.packaging.version",
-                    "pkg_resources._vendor.packaging.specifiers",
-                    "pkg_resources._vendor.packaging.requirements",
-                    "pkg_resources._vendor.six",
-                ],
-                'excludes': [
-                ],
-                'ignores': [
-                    # all database modules except sqlite3
-                    'pgdb', 'Sybase', 'adodbapi',
-                    'kinterbasdb', 'psycopg', 'psycopg2', 'pymssql',
-                    'sapdb', 'pysqlite2', 'sqlite',
-                    'MySQLdb', 'MySQLdb.connections',
-                    'MySQLdb.constants.CR', 'MySQLdb.constants.ER',
-                    # old datetime equivalents
-                    'DateTime', 'DateTime.ISO',
-                    'mx', 'mx.DateTime', 'mx.DateTime.ISO',
-                    # email modules
-                    'email.Generator', 'email.Iterators', 'email.Utils',
-                    # GDK related imports we can ignore
-                    'gdk', 'ltihooks',
-                    # ignore things include in Python >= 2.5
-                    'elementtree.ElementTree',
-                ],
-            }},
+            options = {
+                "build_exe": build_exe_options,
+            },
+            executables = [Executable("sutekh/SutekhGui.py", icon="artwork/sutekh-icon-inkscape.ico",
+                                      base=guibase),
+                           Executable("sutekh/SutekhCli.py", base=None)],
             data_files = [
                 ('share/doc/python-sutekh', [
                     'COPYRIGHT',
