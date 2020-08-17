@@ -36,18 +36,15 @@ build_exe_options = {
              os.path.join('lib', 'gtk-3.0')),
          (os.path.join(sys.prefix, 'lib', 'gdk-pixbuf-2.0'),
              os.path.join('lib', 'gdk-pixbuf-2.0')),
-         # We don't import plugins directly, so we include them now
-         (os.path.join('sutekh', 'base', 'gui', 'plugins'),
-             os.path.join('sutekh', 'base', 'gui', 'plugins')),
-         (os.path.join('sutekh', 'gui', 'plugins'),
-             os.path.join('sutekh', 'gui', 'plugins')),
          # Include docs
          (os.path.join('sutekh', 'docs', 'html_docs'),
              os.path.join('sutekh', 'docs', 'html_docs')),
          # icons
          ('artwork', 'artwork'),
     ],
-    'packages': ['gi', 'cairo'],
+    # Includes doesn't include all the files, so we need to use packages for
+    # the plugins
+    'packages': ['gi', 'cairo', 'sutekh.base.gui.plugins', 'sutekh.gui.plugins'],
 }
 
 

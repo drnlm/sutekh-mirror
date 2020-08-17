@@ -17,7 +17,8 @@ import os
 os.environ["UBUNTU_MENUPROXY"] = "0"
 
 # Setup environment variables for running in a frozen list
-# List is taken from various reports and other gtk3 + python
+# List is taken from various bug reports and other gtk3 + python projects,
+# so it may be excessive for Sutekh
 if hasattr(sys, 'frozen'):
     prefix = os.path.dirname(sys.executable)
     os.environ['GTK_EXE_PREFIX'] = prefix
