@@ -22,8 +22,14 @@ sys.path.append('sutekh')
 SutekhInfo = importlib.import_module("SutekhInfo").SutekhInfo
 
 build_exe_options = {
-    'includes': ['sqlobject.boundattributes', 'sqlobject.declarative'],
+    'includes': ['sqlobject.boundattributes', 'sqlobject.declarative',
+                 'packaging.specifiers', 'packaging.requirements', 'packaging.version'],
+    # We need to exclude DateTime to avoid sqlobject trying (and failing) to import it
+    # in col.py
+    # We exclude some other unneeded packages to reduce bloat
+    'excludes': ['DateTime', 'tkinter', 'test'],
     'include_files': [
+        # We should reduce the number of icons we copy
          (os.path.join(sys.prefix, 'share', 'icons', 'Adwaita'),
              os.path.join('share', 'icons', 'Adwaita')),
          (os.path.join(sys.prefix, 'lib', 'gtk-3.0'),
@@ -38,6 +44,8 @@ build_exe_options = {
          # Include docs
          (os.path.join('sutekh', 'docs', 'html_docs'),
              os.path.join('sutekh', 'docs', 'html_docs')),
+         # icons
+         ('artwork', 'artwork'),
     ],
     'packages': ['gi', 'cairo'],
 }
@@ -49,10 +57,14 @@ if sys.platform == "win32":
     # Copy in ssl certs from msys2 installation
     import ssl
     ssl_paths = ssl.get_default_verify_paths()
-    build_exe_options['include_files'].extend(
+    build_exe_options['include_files'].append(
             (ssl_paths.openssl_cafile, os.path.join('etc', 'ssl', 'cert.pem')))
-    build_exe_options['include_files'].extend(
+    build_exe_options['include_files'].append(
             (ssl_paths.openssl_capath, os.path.join('etc', 'ssl', 'certs')))
+    build_exe_options['include_files'].append(
+            (os.path.join('lib', 'librsvg-2.a'), os.path.join('lib', 'librsvg-2.a')))
+    build_exe_options['include_files'].append(
+            (os.path.join('lib', 'librsvg-2.dll.a'), os.path.join('lib', 'librsvg-2.dll.a')))
 
 
 setup   (   # Metadata

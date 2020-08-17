@@ -24,17 +24,14 @@ if hasattr(sys, 'frozen'):
     os.environ['GTK_DATA_PREFIX'] = prefix
     os.environ['XDG_DATA_DIRS'] = os.path.join(prefix, 'share')
     etc = os.path.join(prefix, 'etc')
-    os.environ['GDK_PIXBUF_MODULE_FILE'] = os.path.join(
-            etc, 'gtk-3.0', 'gdk-pixbuf.loaders')
-    os.environ['GTK_IM_MODULE_FILE'] = os.path.join(
-            etc, 'gtk-3.0', 'gtk.immodules')
-    os.environ['GI_TYPELIB_PATH'] = os.path.join(
-            prefix, 'lib', 'girepository-1.0')
 
     if sys.platform.startswith('win'):
         # Point at the frozen certificates
         os.environ.setdefault('SSL_CERT_FILE', os.path.join(etc, 'ssl', 'cert.pem'))
         os.environ.setdefault('SSL_CERT_DIR', os.path.join(etc, 'ssl', 'certs'))
+        # Fix paths for windows gtk loaders
+        os.environ.setdefault('GDK_PIXBUF_MODULEDIR',
+                              os.path.join(prefix, 'lib', 'gdk-pixbuf-2.0', '2.10.0', 'loaders'))
 
 from sqlobject import sqlhub, connectionForURI
 
