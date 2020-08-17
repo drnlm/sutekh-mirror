@@ -62,9 +62,9 @@ if sys.platform == "win32":
     build_exe_options['include_files'].append(
             (ssl_paths.openssl_capath, os.path.join('etc', 'ssl', 'certs')))
     build_exe_options['include_files'].append(
-            (os.path.join('lib', 'librsvg-2.a'), os.path.join('lib', 'librsvg-2.a')))
+            (os.path.join(sys.prefix, 'lib', 'librsvg-2.a'), os.path.join('lib', 'librsvg-2.a')))
     build_exe_options['include_files'].append(
-            (os.path.join('lib', 'librsvg-2.dll.a'), os.path.join('lib', 'librsvg-2.dll.a')))
+            (os.path.join(sys.prefix, 'lib', 'librsvg-2.dll.a'), os.path.join('lib', 'librsvg-2.dll.a')))
 
 
 setup   (   # Metadata
