@@ -8,18 +8,18 @@
 
 """Setuptools setup.py file for Sutekh."""
 
-#from setuptools import setup, find_packages
-
 # avoid importing all of Sutkeh and its dependencies
 import importlib
 import os
 import sys
+from subprocess import check_call
 
 from setuptools import find_packages
 from cx_Freeze import setup, Executable
 
 sys.path.append('sutekh')
 SutekhInfo = importlib.import_module("SutekhInfo").SutekhInfo
+
 
 build_exe_options = {
     'includes': ['sqlobject.boundattributes', 'sqlobject.declarative',
@@ -47,8 +47,26 @@ build_exe_options = {
     'packages': ['gi', 'cairo', 'sutekh.base.gui.plugins', 'sutekh.gui.plugins'],
 }
 
+required_gi_namespaces = [
+    'Atk-1.0',
+    'GLib-2.0',
+    'GModule-2.0',
+    'GObject-2.0',
+    'Gdk-3.0',
+    'GdkPixbuf-2.0',
+    'Gtk-3.0',
+    'Pango-1.0',
+    'PangoCairo-1.0',
+    'PangoFT2-1.0',
+    'Rsvg-2.0',
+    'cairo-1.0',
+    'fontconfig-2.0',
+    'freetype2-2.0',
+]
+
 
 guibase = None
+# We'll probably need most of this for MacOS as well
 if sys.platform == "win32":
     guibase = "Win32GUI"
     # Copy in ssl certs from msys2 installation
@@ -59,9 +77,23 @@ if sys.platform == "win32":
     build_exe_options['include_files'].append(
             (ssl_paths.openssl_capath, os.path.join('etc', 'ssl', 'certs')))
     build_exe_options['include_files'].append(
-            (os.path.join(sys.prefix, 'lib', 'librsvg-2.a'), os.path.join('lib', 'librsvg-2.a')))
-    build_exe_options['include_files'].append(
             (os.path.join(sys.prefix, 'lib', 'librsvg-2.dll.a'), os.path.join('lib', 'librsvg-2.dll.a')))
+    # Copy gir typelib files
+    for ns in required_gi_namespaces:
+        gir_name = '%s.gir' % ns
+        gir_file = os.path.join(sys.prefix, 'share', 'gir-1.0', gir_name)
+        gir_tmp = os.path.join(temp, gir_name)
+        # Specify encoding to avoid weird windows filesystem issues
+        with open(gir_file, 'r', encoding='utf-8') as src:
+            with open(gir_tmp, 'w', encoding='utf-8') as dst:
+                for line in src:
+                    dst.write(lib_re.sub(replace_path, line))
+        typefile_name = '%s.typelib' % ns
+        typefile_file = os.path.join('lib', 'girepository-1.0', typefile_name)
+        typefile_tmp = os.path.join(temp, typefile_name)
+        check_call(['g-ir-compiler', '--output=' + typefile_tmp, gir_tmp])
+
+        build_exe_options['include_files'].append((typefile_tmp, typefile_file))
 
 
 setup   (   # Metadata
