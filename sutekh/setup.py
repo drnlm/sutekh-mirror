@@ -12,7 +12,10 @@
 import importlib
 import os
 import sys
+import tempfile
+
 from subprocess import check_call
+
 
 from setuptools import find_packages
 from cx_Freeze import setup, Executable
@@ -78,7 +81,8 @@ if sys.platform == "win32":
             (ssl_paths.openssl_capath, os.path.join('etc', 'ssl', 'certs')))
     build_exe_options['include_files'].append(
             (os.path.join(sys.prefix, 'lib', 'librsvg-2.dll.a'), os.path.join('lib', 'librsvg-2.dll.a')))
-    # Copy gir typelib files
+    # Copy gir typelib files (see https://github.com/achadwick/hello-cxfreeze-gtk )
+    temp = tempfile.mkdtemp()
     for ns in required_gi_namespaces:
         gir_name = '%s.gir' % ns
         gir_file = os.path.join(sys.prefix, 'share', 'gir-1.0', gir_name)
