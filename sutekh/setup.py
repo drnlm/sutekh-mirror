@@ -23,6 +23,7 @@ sys.path.append('sutekh')
 SutekhInfo = importlib.import_module("SutekhInfo").SutekhInfo
 
 
+# Heavily based off https://github.com/achadwick/hello-cxfreeze-gtk
 if sys.platform == 'win32':
     binary_include_files = []
 
@@ -37,7 +38,9 @@ if sys.platform == 'win32':
         'libpangoft2-1.0-0.dll',
         'libpangowin32-1.0-0.dll',
         'libatk-1.0-0.dll',
-        'librsvg-2.dll.a',
+        'librsvg-2-2.dll',
+        'libjpeg8.dll',
+        'libpng16-16.dll',
     ]
 
     for dll in required_dlls:
@@ -48,10 +51,8 @@ if sys.platform == 'win32':
                 dll_path = p
                 break
         assert dll_path is not None, \
-            "Unable to locate {} in {}".format(
-                dll,
-                dll_search_path,
-            )
+            f"Unable to locate {dll} in {required_dll_search_paths}"
+
         binary_include_files.append((dll_path, dll))
 
     required_gi_namespaces = [
@@ -59,12 +60,15 @@ if sys.platform == 'win32':
         "Gdk-3.0",
         "cairo-1.0",
         "Pango-1.0",
+        "PangoCairo-1.0",
+        "PangoFT2-1.0",
         "GObject-2.0",
         "GLib-2.0",
         "Gio-2.0",
         "GdkPixbuf-2.0",
         "GModule-2.0",
         "Atk-1.0",
+        "Poppler-0.18",
     ]
 
     for ns in required_gi_namespaces:
