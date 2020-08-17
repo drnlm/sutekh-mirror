@@ -24,6 +24,7 @@ if hasattr(sys, 'frozen'):
     os.environ['GTK_EXE_PREFIX'] = prefix
     os.environ['GTK_DATA_PREFIX'] = prefix
     os.environ['XDG_DATA_DIRS'] = os.path.join(prefix, 'share')
+    os.environ['GI_TYPELIB_PATH'] = os.path.join(prefix, 'lib', 'girepository-1.0')
     etc = os.path.join(prefix, 'etc')
 
     if sys.platform.startswith('win'):
