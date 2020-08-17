@@ -10,13 +10,33 @@ import sys
 import optparse
 import os
 
-from sqlobject import sqlhub, connectionForURI
-
 # pylint: disable=wrong-import-position
 # This is annoying, but needs to be set to before gtk is imported to
 # work with Ubuntu's later unity-gtk2-module approach to moving
 # menus around
 os.environ["UBUNTU_MENUPROXY"] = "0"
+
+# Setup environment variables for running in a frozen list
+# List is taken from various reports and other gtk3 + python
+if hasattr(sys, 'frozen'):
+    prefix = os.path.dirname(sys.executable)
+    os.environ['GTK_EXE_PREFIX'] = prefix
+    os.environ['GTK_DATA_PREFIX'] = prefix
+    os.environ['XDG_DATA_DIRS'] = os.path.join(prefix, 'share')
+    etc = os.path.join(prefix, 'etc')
+    os.environ['GDK_PIXBUF_MODULE_FILE'] = os.path.join(
+            etc, 'gtk-3.0', 'gdk-pixbuf.loaders')
+    os.environ['GTK_IM_MODULE_FILE'] = os.path.join(
+            etc, 'gtk-3.0', 'gtk.immodules')
+    os.environ['GI_TYPELIB_PATH'] = os.path.join(
+            prefix, 'lib', 'girepository-1.0')
+
+    if sys.platform.startswith('win'):
+        # Point at the frozen certificates
+        os.environ.setdefault('SSL_CERT_FILE', os.path.join(etc, 'ssl', 'cert.pem'))
+        os.environ.setdefault('SSL_CERT_DIR', os.path.join(etc, 'ssl', 'certs'))
+
+from sqlobject import sqlhub, connectionForURI
 
 # import gi and specify required versions
 import gi

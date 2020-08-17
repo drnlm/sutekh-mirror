@@ -23,7 +23,22 @@ SutekhInfo = importlib.import_module("SutekhInfo").SutekhInfo
 
 build_exe_options = {
     'includes': ['sqlobject.boundattributes', 'sqlobject.declarative'],
-    'include_files': [],
+    'include_files': [
+         (os.path.join(sys.prefix, 'share', 'icons', 'Adwaita'),
+             os.path.join('share', 'icons', 'Adwaita')),
+         (os.path.join(sys.prefix, 'lib', 'gtk-3.0'),
+             os.path.join('lib', 'gtk-3.0')),
+         (os.path.join(sys.prefix, 'lib', 'gdk-pixbuf-2.0'),
+             os.path.join('lib', 'gdk-pixbuf-2.0')),
+         # We don't import plugins directly, so we include them now
+         (os.path.join('sutekh', 'base', 'gui', 'plugins'),
+             os.path.join('sutekh', 'base', 'gui', 'plugins')),
+         (os.path.join('sutekh', 'gui', 'plugins'),
+             os.path.join('sutekh', 'gui', 'plugins')),
+         # Include docs
+         (os.path.join('sutekh', 'docs', 'html_docs'),
+             os.path.join('sutekh', 'docs', 'html_docs')),
+    ],
     'packages': ['gi', 'cairo'],
 }
 
@@ -32,8 +47,12 @@ guibase = None
 if sys.platform == "win32":
     guibase = "Win32GUI"
     # Copy in ssl certs from msys2 installation
+    import ssl
+    ssl_paths = ssl.get_default_verify_paths()
     build_exe_options['include_files'].extend(
-            (os.path.join(sys.prefix, 'ssl'), 'etc/ssl'))
+            (ssl_paths.openssl_cafile, os.path.join('etc', 'ssl', 'cert.pem')))
+    build_exe_options['include_files'].extend(
+            (ssl_paths.openssl_capath, os.path.join('etc', 'ssl', 'certs')))
 
 
 setup   (   # Metadata
