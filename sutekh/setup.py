@@ -12,7 +12,6 @@
 import importlib
 import os
 import sys
-import tempfile
 
 from subprocess import check_call
 
@@ -81,23 +80,13 @@ if sys.platform == "win32":
             (ssl_paths.openssl_capath, os.path.join('etc', 'ssl', 'certs')))
     build_exe_options['include_files'].append(
             (os.path.join(sys.prefix, 'lib', 'librsvg-2.dll.a'), os.path.join('lib', 'librsvg-2.dll.a')))
-    # Copy gir typelib files (see https://github.com/achadwick/hello-cxfreeze-gtk )
-    temp = tempfile.mkdtemp()
+    # Copy gi typelib files (see https://github.com/achadwick/hello-cxfreeze-gtk )
     for ns in required_gi_namespaces:
-        gir_name = '%s.gir' % ns
-        gir_file = os.path.join(sys.prefix, 'share', 'gir-1.0', gir_name)
-        gir_tmp = os.path.join(temp, gir_name)
-        # Specify encoding to avoid weird windows filesystem issues
-        with open(gir_file, 'r', encoding='utf-8') as src:
-            with open(gir_tmp, 'w', encoding='utf-8') as dst:
-                for line in src:
-                    dst.write(lib_re.sub(replace_path, line))
-        typefile_name = '%s.typelib' % ns
-        typefile_file = os.path.join('lib', 'girepository-1.0', typefile_name)
-        typefile_tmp = os.path.join(temp, typefile_name)
-        check_call(['g-ir-compiler', '--output=' + typefile_tmp, gir_tmp])
+        typelib_name = f"{ns}.typelib"
+        systypelib = os.path.join(sys.prefix, 'lib', 'girepository-1.0', typelib_name)
+        typelib = os.path.join('lib', 'girepository-1.0', typelib_name)
 
-        build_exe_options['include_files'].append((typefile_tmp, typefile_file))
+        build_exe_options['include_files'].append((systypelib, typelib))
 
 
 setup   (   # Metadata
